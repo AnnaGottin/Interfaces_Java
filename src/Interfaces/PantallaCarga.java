@@ -29,13 +29,17 @@ public class PantallaCarga extends javax.swing.JFrame {
     
     public PantallaCarga() {
         initComponents();
+        //Funciona? Si, por que? no se muy bien
+        //Mediante this, enviamos el frame principal para que sea cambiado de tamaño a uno similar a la "pantalla completa"
         makeFrameFullSize(this);
         bg_Settings bg_image = new bg_Settings();
+        //bg_Settings es la clase en Objects
+        //Creamos una imagen que sera usada como icono en el label de abajo
+        //si quieres cambiar el tamaño de esta cosa, hazlo en bg_Settings
         bg_Imagen.setIcon(bg_image );
         
         
-        //JOptionPane.showInputDialog(Login, Pass, "Log In",JOptionPane.QUESTION_MESSAGE , JOptionPane.QUESTION_MESSAGE);
-        //JOptionPane.
+        
          
         
     }
@@ -68,10 +72,8 @@ public class PantallaCarga extends javax.swing.JFrame {
         Login.setTitle("Log In");
         Login.setAlwaysOnTop(true);
         Login.setIconImage(getIconImage());
-        Login.setMaximumSize(new java.awt.Dimension(370, 220));
         Login.setMinimumSize(new java.awt.Dimension(370, 220));
         Login.setName("Log In"); // NOI18N
-        Login.setPreferredSize(new java.awt.Dimension(370, 220));
         Login.setResizable(false);
 
         l_User.setText("User");
@@ -195,8 +197,7 @@ public class PantallaCarga extends javax.swing.JFrame {
 
     private void EnterLogin(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_EnterLogin
         if(evt.getKeyCode() == VK_ENTER ){
-            //javax.swing.JPasswordField Pass = new javax.swing.JPasswordField();
-            //JOptionPane.showConfirmDialog(Login, Pass, "login", JOptionPane.OK_CANCEL_OPTION);
+            //Pulsa la tecla Enter para ver el login
             Login.setVisible(true);
             Login.setLocation(bg_Imagen.getX()/2, bg_Imagen.getY()/2);
             
@@ -211,13 +212,17 @@ public class PantallaCarga extends javax.swing.JFrame {
 
     private void b_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_LoginActionPerformed
         String B, U, P;
+        //Estos son los datos que enviaras para que te conectes a la base de datos
         B = t_Base.getText();
         U = t_User.getText();
         P = t_Pass.getText();
         Connection AzurLane = ConnectionSQL.Test(B, U, P);
+        
         if(AzurLane != null){
             Principal.Conec = AzurLane;
             Login.dispose();
+            //En teoria lo envia a que se almacene y quita el frame de login
+            //No he hecho mas pasado este punto
         }
         
         
@@ -230,6 +235,7 @@ public class PantallaCarga extends javax.swing.JFrame {
     
    
     private void makeFrameFullSize(JFrame aFrame) {
+        //Cambia el tamaño de un frame a "pantalla completa"
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         aFrame.setSize(screenSize.width, screenSize.height);
     }
@@ -242,6 +248,7 @@ public class PantallaCarga extends javax.swing.JFrame {
     public Image getIconImage() {
        Image retValue = Toolkit.getDefaultToolkit().
              getImage(ClassLoader.getSystemResource("Iconos/AzuIco3.png"));
+       //Cambia el icono de la ventana
        return retValue;
     }
     

@@ -24,28 +24,29 @@ public class ConnectionSQL {
         String nombreBD = Database;
         String login = User;
         String pass = Password;
-        String url = "jdbc:mysql://localhost:3306/"+nombreBD+"?useUnicode=true&use"+
-                "JDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&"+"serverTimezone=UTC";
-        
+        String url = "jdbc:mysql://127.0.0.1:3306/"+nombreBD+"?useUnicode=true&use"+
+                "JDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&"+"serverTimezone=UTC&useSSL=false";
         String SQLEx, SQLEs, Msg="";
         int VenErr;
          Connection AzurLane = null;
-        
+        //Detalles para que la conexion pueda ser realizada y regresar un objeto de tipo Connection
+         
+         
         try{
-            AzurLane =  DriverManager.getConnection(url, login, pass);
+            AzurLane =  DriverManager.getConnection(url, login, pass); //Conexion
             
-        }catch(SQLException A){
+        }catch(SQLException A){//Mensaje de error si no funciona la conexion
             SQLEx = "SQLException: "+ A.getMessage();
             SQLEs = "SQLState: " +A.getSQLState();
             VenErr = A.getErrorCode();
             Msg = "Informacion del Error\n"+SQLEx+"\n"+SQLEs+"\n"+"Vendor Error: " +VenErr;
         }
         if(Msg.compareTo("") != 0){
-            JOptionPane.showMessageDialog(null, Msg, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, Msg, "Error", JOptionPane.ERROR_MESSAGE);//Si hubo errores
             return null;
         }else{
             JOptionPane.showMessageDialog(null, "Connection Open", "Success", JOptionPane.INFORMATION_MESSAGE);
-            
+            //si todo sale bien
             return AzurLane;
         }
     }

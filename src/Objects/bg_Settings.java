@@ -21,16 +21,23 @@ import javax.swing.ImageIcon;
 public class bg_Settings implements Icon {
     String[] Backgrounds =  {"bg_0001.jpg","bg_0002.jpg","bg_0003.jpg","bg_0004.png","bg_0005.png","bg_0006.png",
     "bg_0007.jpg","bg_0008.jpg","bg_0009.jpg","bg_0010.jpg","bg_0011.jpg"};
+    //Nombre de los fondos a ser usados, estan en la carpeta LoadScreen
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    
+    //Obtiene las dimensiones de la pantalla en mi caso me da un aproximado muy cercano
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         Random Rand = new Random();
+        //La idea es que nos de un "Id" aleatorio del array compuesto por el nombre de las imagenes
         int Num = Rand.nextInt(Backgrounds.length - 1);
-        Image image = new ImageIcon(getClass().getResource("/LoadScreen/"+Backgrounds[Num])).getImage();
+        //Pide un numero aleatorio
         
-        //g.drawImage(image, x, y, c);
+        Image image = new ImageIcon(getClass().getResource("/LoadScreen/"+Backgrounds[Num])).getImage();
+        //Se carga
+        //Cambia screenSize.width para el ancho que quieres que tenga la imagen
+        //Cambia screenSize.heigh para el alto que quieres que tenga la imagen
+        //Si te sientes atrevido podrias tener esta clase recibiendo en su constructor esos tamaños y ver como lleguen aqui
         g.drawImage(image, x, y, screenSize.width, screenSize.height, c);
+        //se cambia el tamaño de la misma
     }
 
     @Override

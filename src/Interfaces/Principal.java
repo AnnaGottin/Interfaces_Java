@@ -16,9 +16,10 @@ public class Principal {
      * @param args the command line arguments
      */
     static Connection Conec;
+    //con la idea de poder usar la conexion cuando sea necesario
     public static void main(String[] args) {
         Interfaces.PantallaCarga.main(args);
-        
+        //Aqui Inicia la aplicacion
     }
     
 }

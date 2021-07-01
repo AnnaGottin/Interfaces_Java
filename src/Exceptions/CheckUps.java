@@ -11,6 +11,7 @@ package Exceptions;
  */
 public class CheckUps {
     
+    //solo comprueba si tiene numeros cuando debe tener texto
     public static String TextoSNumeros(String Text){
         String Msg="";
         int B = NumberFormat(Text);
@@ -18,7 +19,7 @@ public class CheckUps {
             Msg = " Contiene Numeros";
         return Msg;
     }
-    
+    //Esta da un error si detecta que hay texto, no hace nada con nfe solo devuelve un valor como bandera
     public static int NumberFormat(String Text){
         int B=0;
         try {Integer.parseInt(Text);
